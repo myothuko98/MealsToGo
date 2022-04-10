@@ -8,6 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { Searchbar } from "react-native-paper";
+import { RestaurantInfo } from "../components/restaurant-info.component";
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState(null);
   return (
@@ -20,7 +21,7 @@ export const RestaurantsScreen = () => {
         />
       </View>
       <View style={styles.list}>
-        <Text>List</Text>
+        <RestaurantInfo />
       </View>
     </SafeAreaView>
   );

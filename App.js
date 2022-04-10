@@ -9,11 +9,12 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
+import { RestaurantInfo } from "./src/features/restaurants/components/restaurant-info.component";
 export default function App() {
  
   return (
     <>
-    <RestaurantsScreen />
+      <RestaurantsScreen />
       <ExpoStatusBar style="auto" />
     </>
   );
