@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { RestaurantsScreen } from "./src/features/restaurants/screens/restaurants.screen";
-import { RestaurantInfo } from "./src/features/restaurants/components/restaurant-info.component";
+import { RestaurantInfo } from "./src/features/restaurants/components/restaurant-info-card.component";
 export default function App() {
  
   return (
@@ -20,17 +20,4 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-  search: {
-    padding: 10,
-  },
-  list: {
-    flex:1,
-    padding:10,
-    backgroundColor: "green",
-  },
-});
+
