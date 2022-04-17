@@ -16,10 +16,7 @@ export const RestaurantsNavigator = () => {
         !isAndroid && { ...TransitionPresets.ModalPresentationIOS }
       }
     >
-      <RestaurantStack.Screen
-        component={RestaurantsScreen}
-        name="Restaurants"
-      />
+      <RestaurantStack.Screen component={RestaurantsScreen} name="Restaurant" />
       <RestaurantStack.Screen
         component={RestaurantDetailScreen}
         name="RestaurantDetail"

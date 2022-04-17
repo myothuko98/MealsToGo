@@ -12,6 +12,7 @@ import { RestaurantContextProvider } from "./src/services/restaurants/restaurant
 import { LocationContextProider } from "./src/services/location/location.context";
 import { AppNavigator } from "./src/infrastructure/navigation/app.navigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 export default function App() {
   const scheme = useColorScheme();
@@ -26,16 +27,18 @@ export default function App() {
 
   return (
     <>
-    {/* use <SafeAreaProvider from react-native-safe-area-context for without header bar in react navigation */}
+      {/* use <SafeAreaProvider from react-native-safe-area-context for without header bar in react navigation */}
       {/* <SafeAreaProvider> */}
-        <ThemeProvider theme={scheme === "dark" ? theme : theme}>
+      <ThemeProvider theme={scheme === "dark" ? theme : theme}>
+        <FavouritesContextProvider>
           <LocationContextProider>
             <RestaurantContextProvider>
               <AppNavigator />
             </RestaurantContextProvider>
           </LocationContextProider>
-        </ThemeProvider>
-        <ExpoStatusBar style="auto" />
+        </FavouritesContextProvider>
+      </ThemeProvider>
+      <ExpoStatusBar style="auto" />
       {/* </SafeAreaProvider> */}
     </>
   );
