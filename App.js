@@ -10,13 +10,8 @@ import {
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurants.context";
 import { LocationContextProider } from "./src/services/location/location.context";
-import { AppNavigator } from "./src/infrastructure/navigation/app.navigator";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
-import { getApps, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { loginRequest } from "./src/services/authentication/authentication.service";
 import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
 import { Navigation } from "./src/infrastructure/navigation";
 
@@ -33,7 +28,6 @@ import { Navigation } from "./src/infrastructure/navigation";
 //   initializeApp(firebaseConfig);
 // }
 
-
 export default function App() {
   const scheme = useColorScheme();
 
@@ -48,21 +42,13 @@ export default function App() {
     return null;
   }
 
-  
-
   return (
     <>
       {/* use <SafeAreaProvider from react-native-safe-area-context for without header bar in react navigation */}
       {/* <SafeAreaProvider> */}
       <ThemeProvider theme={scheme === "dark" ? theme : theme}>
         <AuthenticationProvider>
-          <FavouritesContextProvider>
-            <LocationContextProider>
-              <RestaurantContextProvider>
-                <Navigation />
-              </RestaurantContextProvider>
-            </LocationContextProider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthenticationProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />

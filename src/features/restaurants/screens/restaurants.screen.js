@@ -9,12 +9,13 @@ import { RestaurantContext } from "../../../services/restaurants/restaurants.con
 import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { Search } from "../components/search.component";
 import { FavouriteBar } from "../../../components/favoruites/favourite-bar.component";
+import { FadeInView } from "../../../components/animation/fade.animation";
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantContext);
   const { favourites } = useContext(FavouritesContext);
   const [isToggle, setIsToggle] = useState(false);
-  
+
   const RestaurantList = styled(FlatList).attrs({
     contentContainerStyle: {
       padding: 16,
@@ -30,8 +31,6 @@ export const RestaurantsScreen = ({ navigation }) => {
   const Loading = styled(ActivityIndicator)`
     margin-left: -25px;
   `;
-
-
 
   return (
     <SafeArea>
@@ -60,7 +59,9 @@ export const RestaurantsScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfoCard restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
