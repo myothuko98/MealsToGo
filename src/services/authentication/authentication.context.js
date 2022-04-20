@@ -1,4 +1,6 @@
+import { onAuthStateChanged } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
+import { auth } from "../../firebase.config";
 import { loginRequest, RegisterRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -12,8 +14,14 @@ export const AuthenticationProvider = ({ children }) => {
     setError(null);
   }, []);
 
+  onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setIsLoading(false);
+      setUser(currentUser);
+    }
+  });
+
   const onRegister = (email, password, repeatedPassword) => {
-  
     if (password !== repeatedPassword) {
       setError("Error : Password do not match");
       return;
