@@ -45,12 +45,12 @@ function SettingsScreen() {
 export const AppNavigator = () => {
 
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
       <Tab.Navigator screenOptions={createScreenOptions}>
         <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
         <Tab.Screen name="Map" component={MapScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
+      // </NavigationContainer>
   );
 };

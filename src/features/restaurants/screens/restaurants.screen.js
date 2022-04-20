@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -14,7 +14,7 @@ export const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestaurantContext);
   const { favourites } = useContext(FavouritesContext);
   const [isToggle, setIsToggle] = useState(false);
-
+  
   const RestaurantList = styled(FlatList).attrs({
     contentContainerStyle: {
       padding: 16,
@@ -30,6 +30,8 @@ export const RestaurantsScreen = ({ navigation }) => {
   const Loading = styled(ActivityIndicator)`
     margin-left: -25px;
   `;
+
+
 
   return (
     <SafeArea>

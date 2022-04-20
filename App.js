@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./src/infrastructure/theme/light-theme";
 import { useColorScheme } from "react-native";
@@ -14,8 +14,29 @@ import { AppNavigator } from "./src/infrastructure/navigation/app.navigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
+import { getApps, initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { loginRequest } from "./src/services/authentication/authentication.service";
+import { AuthenticationProvider } from "./src/services/authentication/authentication.context";
+import { Navigation } from "./src/infrastructure/navigation";
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDalgPnFWoRdKDwIp1XGV38wQsIW-hCo7M",
+//   authDomain: "mealstogo-78b1b.firebaseapp.com",
+//   projectId: "mealstogo-78b1b",
+//   storageBucket: "mealstogo-78b1b.appspot.com",
+//   messagingSenderId: "846893326126",
+//   appId: "1:846893326126:web:0aecc16ee0de5ca87524bf",
+// };
+
+// if (!getApps().length) {
+//   initializeApp(firebaseConfig);
+// }
+
+
 export default function App() {
   const scheme = useColorScheme();
+
   let [oswaldLoaded] = useOswald({
     Oswald_400Regular,
   });
@@ -23,20 +44,26 @@ export default function App() {
     Lato_400Regular,
   });
 
-  if (!oswaldLoaded || !latoLoaded) return null;
+  if (!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
+
+  
 
   return (
     <>
       {/* use <SafeAreaProvider from react-native-safe-area-context for without header bar in react navigation */}
       {/* <SafeAreaProvider> */}
       <ThemeProvider theme={scheme === "dark" ? theme : theme}>
-        <FavouritesContextProvider>
-          <LocationContextProider>
-            <RestaurantContextProvider>
-              <AppNavigator />
-            </RestaurantContextProvider>
-          </LocationContextProider>
-        </FavouritesContextProvider>
+        <AuthenticationProvider>
+          <FavouritesContextProvider>
+            <LocationContextProider>
+              <RestaurantContextProvider>
+                <Navigation />
+              </RestaurantContextProvider>
+            </LocationContextProider>
+          </FavouritesContextProvider>
+        </AuthenticationProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
       {/* </SafeAreaProvider> */}
