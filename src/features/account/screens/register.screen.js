@@ -17,7 +17,9 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [repeatedPassword, setRepeatedPassword] = useState(null);
-  const { onLogin, error, isLoading, onRegister } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading, onRegister } = useContext(
+    AuthenticationContext
+  );
 
   return (
     <AccountImageBackground>
@@ -32,7 +34,7 @@ export const RegisterScreen = ({ navigation }) => {
           keyboardType="email-address"
           autoCapitalize="none"
         />
-         <Spacer size="medium" />
+        <Spacer size="medium" />
         <AuthInput
           label="Confirm Password"
           value={repeatedPassword}
@@ -59,10 +61,12 @@ export const RegisterScreen = ({ navigation }) => {
         )}
 
         <Spacer size="large" />
+
         <AuthButton
           icon="email"
           mode="contained"
-          onPress={() => onRegister(email, password,repeatedPassword)}
+          onPress={() => onRegister(email, password, repeatedPassword)}
+          loading={isLoading}
         >
           {isLoading ? "Loading" : "Register"}
         </AuthButton>

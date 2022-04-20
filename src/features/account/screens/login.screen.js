@@ -50,12 +50,14 @@ export const LoginScreen = ({ navigation }) => {
         )}
 
         <Spacer size="large" />
+
         <AuthButton
-          icon={isLoading?"loading":"lock-open-outline"}
+          icon="lock-open-outline"
           mode="contained"
           onPress={() => onLogin(email, password)}
+          loading={isLoading}
         >
-          {isLoading ? 'Loading' : 'Login'}
+          {isLoading ? "Loading" : "Login"}
         </AuthButton>
       </AccountContainer>
       <Spacer size="large" />

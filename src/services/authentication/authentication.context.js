@@ -13,10 +13,12 @@ export const AuthenticationProvider = ({ children }) => {
   }, []);
 
   const onRegister = (email, password, repeatedPassword) => {
+  
     if (password !== repeatedPassword) {
       setError("Error : Password do not match");
       return;
     }
+    setIsLoading(true);
     RegisterRequest(email, password, repeatedPassword)
       .then((userCredential) => {
         setUser(userCredential.user);
@@ -43,7 +45,14 @@ export const AuthenticationProvider = ({ children }) => {
   };
   return (
     <AuthenticationContext.Provider
-      value={{ isLoading, isAuthenticated: !!user, user, error, onLogin,onRegister }}
+      value={{
+        isLoading,
+        isAuthenticated: !!user,
+        user,
+        error,
+        onLogin,
+        onRegister,
+      }}
     >
       {children}
     </AuthenticationContext.Provider>
