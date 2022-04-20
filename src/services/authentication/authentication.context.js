@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { loginRequest } from "./authentication.service";
+import { loginRequest, RegisterRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
@@ -11,6 +11,22 @@ export const AuthenticationProvider = ({ children }) => {
   useEffect(() => {
     setError(null);
   }, []);
+
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Error : Password do not match");
+      return;
+    }
+    RegisterRequest(email, password, repeatedPassword)
+      .then((userCredential) => {
+        setUser(userCredential.user);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e);
+      });
+  };
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -27,7 +43,7 @@ export const AuthenticationProvider = ({ children }) => {
   };
   return (
     <AuthenticationContext.Provider
-      value={{ isLoading, isAuthenticated: !!user, user, error, onLogin }}
+      value={{ isLoading, isAuthenticated: !!user, user, error, onLogin,onRegister }}
     >
       {children}
     </AuthenticationContext.Provider>
