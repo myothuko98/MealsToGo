@@ -14,6 +14,7 @@ import { LocationContextProider } from "../../services/location/location.context
 import { RestaurantContextProvider } from "../../services/restaurants/restaurants.context";
 import { SettingScreen } from "../../features/setting/screens/setting.screen";
 import { SettingsNavigator } from "./settings.navigator";
+import { colors } from "../theme/light-theme/colors";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,8 +34,8 @@ const createScreenOptions = ({ route }) => {
         color={color}
       />
     ),
-    tabBarActiveTintColor: "tomato",
-    tabBarInactiveTintColor: "gray",
+    tabBarActiveTintColor: colors.brand.primary,
+    tabBarInactiveTintColor: colors.brand.muted,
     headerShown: false,
   };
 };

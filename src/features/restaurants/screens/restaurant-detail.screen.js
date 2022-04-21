@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { ScrollView } from "react-native";
-import { List } from "react-native-paper";
+import { List,Divider } from "react-native-paper";
 export const RestaurantDetailScreen = ({ route }) => {
   const { restaurant } = route.params;
 
@@ -24,7 +24,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           <List.Item title="Eggs Benedict" />
           <List.Item title="Classic Breakfast" />
         </List.Accordion>
-
+        <Divider />
         <List.Accordion
           title="Lunch"
           left={(props) => <List.Icon {...props} icon="hamburger" />}
@@ -35,7 +35,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           <List.Item title="Steak Sandwich" />
           <List.Item title="Mushroom Soup" />
         </List.Accordion>
-
+        <Divider />
         <List.Accordion
           title="Dinner"
           left={(props) => <List.Icon {...props} icon="food-variant" />}
@@ -46,7 +46,7 @@ export const RestaurantDetailScreen = ({ route }) => {
           <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
           <List.Item title="Steak Frites" />
         </List.Accordion>
-
+        <Divider />
         <List.Accordion
           title="Drinks"
           left={(props) => <List.Icon {...props} icon="cup" />}

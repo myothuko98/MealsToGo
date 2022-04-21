@@ -40,3 +40,10 @@ export const OpenStatus = styled.View`
   flex-direction: row;
   justify-content: flex-end;
 `;
+
+export const Restaurantcard = styled(Card)`
+  background-color: ${props=>props.theme.colors.bg.primary};
+  width:95%;
+  align-self:center;
+  margin-top:10px;
+`;

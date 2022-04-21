@@ -11,6 +11,7 @@ import {
   Info,
   OpenStatus,
   Rating,
+  Restaurantcard,
   Row,
   StyledCover,
   StyledTitle,
@@ -34,7 +35,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
 
   return (
     <>
-      <Card elevation={5}>
+      <Restaurantcard elevation={2}>
         <View>
           <Favourite restaurant={restaurant} />
 
@@ -69,7 +70,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </Row>
           <Address>{address}</Address>
         </Info>
-      </Card>
+      </Restaurantcard>
     </>
   );
 };
