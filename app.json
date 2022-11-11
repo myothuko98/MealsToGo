@@ -25,6 +25,11 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.freeze.mealsetogo"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9a95b948-3d94-47c1-9059-6c38fad0dc65"
+      }
     }
   }
 }
