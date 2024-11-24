@@ -7,21 +7,21 @@ import { FAB } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 
-const ProfileCamera = styled(Camera)`
-  width: 100%;
-  height: 100%;
+// Style the wrapper instead of the Camera component
+const CameraContainer = styled(View)`
+  flex: 1;
 `;
 
-export const CameraScreen = ({navigation}) => {
+export const CameraScreen = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const cameraRef = useRef();
 
-  const {user}  = useContext(AuthenticationContext)
+  const { user } = useContext(AuthenticationContext);
 
   const snap = async () => {
-    if (cameraRef) {
+    if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
-      AsyncStorage.setItem(`${user.uid}-photo`,photo.uri);
+      await AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
       console.log(photo);
       navigation.goBack();
     }
@@ -40,10 +40,12 @@ export const CameraScreen = ({navigation}) => {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
   return (
-    <TouchableOpacity>
-      <ProfileCamera
+    <CameraContainer>
+      <Camera
         ref={(camera) => (cameraRef.current = camera)}
+        style={{ flex: 1 }} // Apply inline styles directly to the Camera
         type={Camera.Constants.Type.front}
         ratio={"16:9"}
       >
@@ -52,7 +54,7 @@ export const CameraScreen = ({navigation}) => {
           style={{ position: "absolute", margin: 20, left: 0, bottom: 0 }}
           onPress={snap}
         />
-      </ProfileCamera>
-    </TouchableOpacity>
+      </Camera>
+    </CameraContainer>
   );
 };
